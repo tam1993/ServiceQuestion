@@ -1,0 +1,61 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="ServiceQuestion.SiteMaster" %>
+
+<!doctype html>
+<html lang="en">
+<head runat="server">
+    <link href="Styles/bootstrap.css" rel="stylesheet" type="text/css" />
+    <script src="Scripts/jquery-3.2.1.min.js" type="text/javascript"></script>
+    <link href="Styles/docs.min.css" rel="stylesheet" type="text/css" />
+    <script src="Scripts/bootstrap.js" type="text/javascript"></script>
+    <script src="Scripts/docs.min.js" type="text/javascript"></script>
+    
+    <script src="Scripts/sweetalert.js" type="text/javascript"></script>
+    <link href="Styles/sweetalert.css" rel="stylesheet" type="text/css" />
+    <style type="text/css" >
+    @font-face {
+            font-family: 'Sarabun';
+            src: url('Font/Sarabun.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        body, html {
+            font-family:Sarabun;
+            height: 100%;
+            margin: 0;
+        }
+        code {
+            font-family:Sarabun;
+            height: 100%;
+            margin: 0;
+        }
+        .container-fluid {
+            /* The image used */
+            background-image: url("img/bg.jpg");
+            min-height:100%;
+
+            /* Center and scale the image nicely */
+            /* Set up positioning */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+        }
+    </style>
+
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+
+
+</head>
+<body>
+    <form runat="server" style="height:100%;">
+    <div class="container-fluid">
+        <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+    </div>
+    <div class="footer">
+        
+    </div>
+    </form>
+</body>
+</html>
