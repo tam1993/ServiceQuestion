@@ -102,5 +102,45 @@ namespace ServiceQuestion
             }
             return dt;
         }
-	}
+
+        public DataTable GetAllQuestion() {
+            DataTable adt = new DataTable();
+            try {
+                _CStatement = new CStatement("Select_AllQuestion", "", "", "", CommandType.StoredProcedure);
+                CSQLParameterList _parameter = new CSQLParameterList() ;
+                CSQLDataAdepterList _adapter = new CSQLDataAdepterList();
+                CSQLStatementValue _csv = new CSQLStatementValue(_CStatement, _parameter, NoomLibrary.StatementType.Select);
+
+                _adapter.Add(_csv);
+                /*execute*/
+                _CSQLConnection.Open();
+                adt = ((DataTable)_CSQLConnection.Execute(_adapter));
+                _CSQLConnection.Commit();
+            } catch (Exception) {
+
+            }
+            return adt;
+        }
+
+        public void UpdateQuestion() {
+            try {
+                _CStatement = new CStatement("", "", "Update_Question", "", CommandType.StoredProcedure);
+                CSQLDataAdepterList _adapter = new CSQLDataAdepterList();
+                CSQLParameterList _parameter = new CSQLParameterList(){
+                        {"@QuestionID", SqlDbType.Int, QuestionID , ParameterDirection.Input },
+                        {"@ServiceCode", SqlDbType.VarChar, ServiceCode , ParameterDirection.Input }
+                    };
+                CSQLStatementValue _csv = new CSQLStatementValue(_CStatement, _parameter, NoomLibrary.StatementType.Update);
+
+                _adapter.Add(_csv);
+                /*execute*/
+                _CSQLConnection.Open();
+                _CSQLConnection.Execute(_adapter);
+                _CSQLConnection.Commit();
+                _CSQLConnection.Close();
+            } catch (Exception) {
+
+            }
+        }
+    }
 }

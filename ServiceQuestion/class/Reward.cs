@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Data;
 using NoomLibrary;
 
@@ -19,6 +16,7 @@ namespace ServiceQuestion
         public string DatestampEnd { get; set; }
         public int EventID { get; set; }
         public int CustomerID { get; set; }
+        public int Total { get; set; }
 
         /*SQlConnection*/
         private CStatement _CStatement;
@@ -160,5 +158,44 @@ namespace ServiceQuestion
             }
         }
 
-	}
+        public DataTable GetAllReward() {
+            DataTable adt = new DataTable();
+            try {
+                _CStatement = new CStatement("Select_AllReward", "", "", "", CommandType.StoredProcedure);
+                CSQLParameterList _parameter = new CSQLParameterList();
+                CSQLDataAdepterList _adapter = new CSQLDataAdepterList();
+                CSQLStatementValue _csv = new CSQLStatementValue(_CStatement, _parameter, NoomLibrary.StatementType.Select);
+
+                _adapter.Add(_csv);
+                /*execute*/
+                _CSQLConnection.Open();
+                adt = ((DataTable)_CSQLConnection.Execute(_adapter));
+                _CSQLConnection.Commit();
+            } catch (Exception) {
+
+            }
+            return adt;
+        }
+
+        public void UpdateReward() {
+            try {
+                _CStatement = new CStatement("", "", "Update_Reward", "", CommandType.StoredProcedure);
+                CSQLDataAdepterList _adapter = new CSQLDataAdepterList();
+                CSQLParameterList _parameter = new CSQLParameterList(){
+                        {"@RewardID", SqlDbType.VarChar, RID  , ParameterDirection.Input },
+                        {"@Total", SqlDbType.Int, Total , ParameterDirection.Input }
+                    };
+                CSQLStatementValue _csv = new CSQLStatementValue(_CStatement, _parameter, NoomLibrary.StatementType.Update);
+
+                _adapter.Add(_csv);
+                /*execute*/
+                _CSQLConnection.Open();
+                _CSQLConnection.Execute(_adapter);
+                _CSQLConnection.Commit();
+                _CSQLConnection.Close();
+            } catch (Exception) {
+
+            }
+        }
+    }
 }
