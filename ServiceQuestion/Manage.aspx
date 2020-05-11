@@ -10,6 +10,9 @@
             color : aqua;
             font-size:18px;
         }
+        .container-fluid {
+            background-image: repeating-linear-gradient(#fff, #fff, #fff);
+        }
     </style>
 </asp:Content>
 
@@ -17,19 +20,22 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server" />
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
-    <div class="col-md-10 container" runat=server style="margin-top:120px;">
-        <nav>
-            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            <a class="nav-item nav-link active" id="nav-question-btn" data-toggle="tab" href="#nav-question" role="tab" aria-selected="true">คำถาม</a>
-            <a class="nav-item nav-link" id="nav-reward-btn" data-toggle="tab" href="#nav-reward" role="tab" aria-selected="false">ของรางวัล</a>
-            </div>
-        </nav>
+    <div class="col-md-10 container" runat=server style="margin-top:70px;">
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-question-btn" data-toggle="tab" href="#nav-question">คำถาม</a>
+            <a class="nav-item nav-link" id="nav-reward-btn" data-toggle="tab" href="#nav-reward">ของรางวัล</a>
+            <a class="nav-item nav-link justify-content-end" href="report.aspx">Report</a>
+        </div>
 
+        <br />
         <div class="tab-content" id="nav-tabContent">
             <!-- คำถาม -->
             <div class="tab-pane fade show active" id="nav-question" role="tabpanel">
                 <div class="table-responsesive" style="overflow: scroll;overflow-y: auto;overflow-x: hidden;height: 500px;">
-                    <asp:GridView CssClass="table table-striped table-dark" ID="QuestionGridView" runat="server" AutoGenerateColumns ="false" DataKeyNames="QID" OnRowCancelingEdit="QuestionGridView_RowCancelingEdit" OnRowCommand="QuestionGridView_RowCommand" OnRowEditing="QuestionGridView_RowEditing" OnRowUpdating="QuestionGridView_RowUpdating" >
+                    <asp:GridView CssClass="table table-striped table-dark" ID="QuestionGridView" runat="server" AutoGenerateColumns ="false" DataKeyNames="QID" 
+                        OnRowCancelingEdit="QuestionGridView_RowCancelingEdit"
+                        OnRowEditing="QuestionGridView_RowEditing" 
+                        OnRowUpdating="QuestionGridView_RowUpdating" >
                         <Columns>
                             <%--คำถาม--%>
                             <asp:TemplateField HeaderText = "คำถาม" HeaderStyle-Width="400px">
@@ -67,7 +73,7 @@
                             <%--แก้ไข--%>
                             <asp:TemplateField HeaderText = "แก้ไข">
                                 <ItemTemplate>
-                                    <asp:Button ID="EditBtn" runat="server" CssClass="btn btn-raised btn-sm btn-info" Text="---- Edit----" CommandName="Edit" /> 
+                                    <asp:Button ID="EditBtn" runat="server" CssClass="btn btn-raised btn-sm btn-info" Text="----Edit----" CommandName="Edit" /> 
                                 </ItemTemplate>
                                 <EditItemTemplate>
                                     <div class="btn-group">
@@ -84,7 +90,10 @@
             <!-- รางวัล -->
             <div class="tab-pane" id="nav-reward" role="tabpanel">
                 <div class="table-responsesive" style="overflow: scroll; overflow-y: auto; overflow-x: hidden; height: 500px;">
-                    <asp:GridView ID="RewardGridView" CssClass="table table-striped table-dark" runat="server" AutoGenerateColumns="false" DataKeyNames="RID" OnRowCancelingEdit="RewardGridView_RowCancelingEdit" OnRowEditing="RewardGridView_RowEditing" OnRowUpdating="RewardGridView_RowUpdating">
+                    <asp:GridView ID="RewardGridView" CssClass="table table-striped table-dark" runat="server" AutoGenerateColumns="false" DataKeyNames="RID" 
+                            OnRowCancelingEdit="RewardGridView_RowCancelingEdit" 
+                            OnRowEditing="RewardGridView_RowEditing" 
+                            OnRowUpdating="RewardGridView_RowUpdating">
                         <Columns>
                             <%--ชื่อของรางวัล--%>
                             <asp:TemplateField HeaderText = "ของรางวัล" HeaderStyle-Width="300px">
@@ -99,7 +108,7 @@
                                     <asp:Label ID="Rtotal" runat="server" Text='<%# Eval("Rtotal") %>' />
                                 </ItemTemplate>
                                 <EditItemTemplate>
-                                    <asp:TextBox CssClass ="form-control" style="width:100px;" Text ='<%# Eval("Rtotal") %>' ID="RtotalTxt" runat="server" />
+                                    <asp:TextBox CssClass ="form-control form-control-sm" style="width:100px;" Text ='<%# Eval("Rtotal") %>' ID="RtotalTxt" runat="server" autocomplete="off" />
                                 </EditItemTemplate>
                             </asp:TemplateField>
                             
@@ -113,7 +122,7 @@
                             <%--แก้ไข--%>
                             <asp:TemplateField HeaderText = "แก้ไข" HeaderStyle-Width="100px">
                                 <ItemTemplate>
-                                    <asp:Button ID="RewardEditBtn" runat="server" CssClass="btn btn-raised btn-sm btn-info" Text="---- Edit----" CommandName="Edit" /> 
+                                    <asp:Button ID="RewardEditBtn" runat="server" CssClass="btn btn-raised btn-sm btn-info" Text="----Edit----" CommandName="Edit" /> 
                                 </ItemTemplate>
                                 <EditItemTemplate>
                                     <div class="btn-group">

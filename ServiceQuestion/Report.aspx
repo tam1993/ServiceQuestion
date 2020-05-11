@@ -29,9 +29,9 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server" />
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
-        <div class="col-md-10 container" runat=server style="margin-top:120px;">
+        <div class="col-md-10 container" runat=server style="margin-top:50px;">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <asp:DropDownList ID="ServiceCode" CssClass="form-control font-xx" runat="server">
                         <asp:ListItem Value='none'>เลือกสาขา</asp:ListItem>
                         <asp:ListItem Value='all'>ทุกสาขา</asp:ListItem>
@@ -47,15 +47,15 @@
                     </asp:DropDownList>
                 </div>
                 <div class="col-md-1">
-                    <asp:TextBox ID="TextBox1" CssClass="form-control" runat="server" AutoComplete=off placeholder="เลือกวันที่" />
+                    <asp:TextBox ID="TextBox1" CssClass="form-control form-control-sm font-xx" runat="server" AutoComplete=off placeholder="เลือกวันที่" />
                     <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="TextBox1"  />
                 </div>
                 <div class="col-md-1">
-                    <asp:TextBox ID="TextBox2" CssClass="form-control" runat="server" AutoComplete=off placeholder="เลือกวันที่" />
+                    <asp:TextBox ID="TextBox2" CssClass="form-control form-control-sm font-xx" runat="server" AutoComplete=off placeholder="เลือกวันที่" />
                     <ajaxToolkit:CalendarExtender ID="CalendarExtender2" runat="server" Format="yyyy-MM-dd" TargetControlID="TextBox2"  />
                 </div>
                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                <asp:Button ID="Button1" CssClass="btn btn-outline-success font-xx" runat="server" Text="แสดงข้อมูล" onclick="Button1_Click" />
+                <asp:Button ID="Button1" CssClass="btn btn-success font-xx" runat="server" Text="แสดงข้อมูล" onclick="Button1_Click" />
             </div>
 
             <nav>

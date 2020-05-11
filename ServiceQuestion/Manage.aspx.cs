@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -40,8 +37,13 @@ namespace ServiceQuestion
             QuestionGridView.EditIndex = e.NewEditIndex;
             dt = SelectAllQuestion();
 
+            //active select servicecode
             DropDownList ServiceEdit = (DropDownList)QuestionGridView.Rows[e.NewEditIndex].FindControl("ServiceEdit");
             ServiceEdit.SelectedValue = dt.Rows[e.NewEditIndex]["QServiceCode"].ToString();
+
+            //focus textbox
+            DropDownList TotalEdit = (DropDownList)QuestionGridView.Rows[e.NewEditIndex].FindControl("ServiceEdit");
+            TotalEdit.Focus();
         }
 
         protected void QuestionGridView_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e) {
@@ -69,20 +71,24 @@ namespace ServiceQuestion
             ScriptManager.RegisterStartupScript(this, GetType(), "ServerControlScript", res, true);
         }
 
-        protected void QuestionGridView_RowCommand(object sender, GridViewCommandEventArgs e) {
-
-        }
-
         protected void RewardGridView_RowEditing(object sender, GridViewEditEventArgs e) {
             RewardGridView.EditIndex = e.NewEditIndex;
             SelectAllReward();
+
+            //active rewardtab
             string Script = "$('#nav-question').removeClass('active');$('#nav-reward').tab('show');$('#nav-question-btn').removeClass('active');$('#nav-reward-btn').addClass('active');";
             ScriptManager.RegisterStartupScript(this, GetType(), "ServerControlScript", Script, true);
+
+            //focus textbox
+            TextBox TotalEdit = (TextBox)RewardGridView.Rows[e.NewEditIndex].FindControl("RtotalTxt");
+            TotalEdit.Focus();
         }
 
         protected void RewardGridView_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e) {
             RewardGridView.EditIndex = -1;
             SelectAllReward();
+
+            //active rewardtab
             string Script = "$('#nav-question').removeClass('active');$('#nav-reward').tab('show');$('#nav-question-btn').removeClass('active');$('#nav-reward-btn').addClass('active');";
             ScriptManager.RegisterStartupScript(this, GetType(), "ServerControlScript", Script, true);
         }
@@ -99,6 +105,7 @@ namespace ServiceQuestion
                 RewardGridView.EditIndex = -1;
                 SelectAllReward();
 
+                //active rewardtab
                 res = "Swal.fire({type: 'success',title: 'OK'});$('#nav-question').tab('show');$('#nav-question').removeClass('active');$('#nav-reward').tab('show');$('#nav-question-btn').removeClass('active');$('#nav-reward-btn').addClass('active');";
             } catch (Exception ex) {
                 res = "Swal.fire({type: 'error',title: '" + ex.Message + "'});$('#nav-question').tab('show');$('#nav-question').tab('show');$('#nav-question').removeClass('active');$('#nav-reward').tab('show');$('#nav-question-btn').removeClass('active');$('#nav-reward-btn').addClass('active');";
