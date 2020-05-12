@@ -80,7 +80,6 @@ namespace ServiceQuestion
             } catch ( Exception ) {
 
             }
-
             return adt;
         }
 

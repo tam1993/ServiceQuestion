@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Services;
@@ -20,7 +18,7 @@ namespace ServiceQuestion {
                     Session.Clear ( );
                     Session[ "ServiceCode" ] = tmpServicecode;
                     Session[ "EventID" ] = tmpEventID;
-                    /******** กิจกรรม Wurth *********/
+                    /******** กิจกรรม Wurth/sunday *********/
                     if ( tmpEventID == "3" ) {
                         wurth.Visible = true;
 
@@ -38,19 +36,26 @@ namespace ServiceQuestion {
                     Select_Event ( );
                 }
                 //Session.Clear ( );
-            } else { }
+            } else { 
+            
+            }
         }
 
         protected void Select_Event( ) {
-            Question qt = new Question ( );
-            EventDropdown.DataSource = qt.GetEvent ( );
-            EventDropdown.DataValueField = "EventID";
-            EventDropdown.DataTextField = "EventName";
-            EventDropdown.DataBind ( );
-            EventDropdown.Items.Insert ( 0, new ListItem ( "เลือกกิจกรรม", "none" ) );
+            try {
+                Question qt = new Question();
+                EventDropdown.DataSource = qt.GetEvent();
+                EventDropdown.DataValueField = "EventID";
+                EventDropdown.DataTextField = "EventName";
+                EventDropdown.DataBind();
+                EventDropdown.Items.Insert(0, new ListItem("เลือกกิจกรรม", "none"));
+            } catch (Exception) { 
+                
+            }
         }
 
         protected void Button1_Click(object sender, EventArgs e) {
+            /******** กิจกรรม Wurth/sunday *********/
             if ( Session[ "EventID" ].ToString ( ) == "3" ) {
                 if ( Tel.Text.Length < 10 ) {
                     string Next5 = "Swal.fire({type: 'error',title: 'กรอกเบอร์โทรไม่ครบ'})";
@@ -62,7 +67,7 @@ namespace ServiceQuestion {
 
                     Response.Redirect ( @"~/question.aspx" );
                 }
-            }else{
+            }else {/******** กิจกรรมศาลาสาระ *********/
                 if ( type.SelectedValue == "" ) {
                     string error = "alert('กรุณาเลือก กลุ่มลูกค้า')";
                     ScriptManager.RegisterStartupScript ( this, GetType ( ), "ServerControlScript", error, true );

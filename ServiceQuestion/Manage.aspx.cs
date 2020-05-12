@@ -17,18 +17,28 @@ namespace ServiceQuestion
         }
 
         protected DataTable SelectAllQuestion() {
-            Question q = new Question();
-            DataTable dt = q.GetAllQuestion();
-            QuestionGridView.DataSource = dt;
-            QuestionGridView.DataBind();
+            DataTable dt = new DataTable();
+            try {
+                Question q = new Question();
+                dt = q.GetAllQuestion();
+                QuestionGridView.DataSource = dt;
+                QuestionGridView.DataBind();
+            } catch (Exception) { 
+                
+            }
             return dt;
         }
 
         protected DataTable SelectAllReward() {
-            Reward q = new Reward();
-            DataTable dt = q.GetAllReward();
-            RewardGridView.DataSource = dt;
-            RewardGridView.DataBind();
+            DataTable dt = new DataTable();
+            try {
+                Reward q = new Reward();
+                dt = q.GetAllReward();
+                RewardGridView.DataSource = dt;
+                RewardGridView.DataBind();
+            } catch (Exception) {
+
+            }
             return dt;
         }
 

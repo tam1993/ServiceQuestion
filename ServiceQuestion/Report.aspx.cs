@@ -7,11 +7,26 @@ using System.Data;
 namespace ServiceQuestion {
     public partial class manage : System.Web.UI.Page {
         protected void Page_Load(object sender, EventArgs e) {
-            if ( !IsPostBack ) {
-                Select_Event ( );
+            if (!IsPostBack) {
+                Select_Event();
+            } else { 
+                
             }
         }
-        
+
+        protected void Select_Event() {
+            try {
+                Question qt = new Question();
+                EventDropdown.DataSource = qt.GetEvent();
+                EventDropdown.DataValueField = "EventID";
+                EventDropdown.DataTextField = "EventName";
+                EventDropdown.DataBind();
+                EventDropdown.Items.Insert(0, new ListItem("เลือกกิจกรรม", "none"));
+            } catch (Exception) { 
+                
+            }
+        }
+
         protected void Button1_Click(object sender, EventArgs e) {
             Reward rw = new Reward ( );
             try {
@@ -69,13 +84,5 @@ namespace ServiceQuestion {
             }
         }
 
-        protected void Select_Event( ) {
-            Question qt = new Question ( );
-            EventDropdown.DataSource = qt.GetEvent ( );
-            EventDropdown.DataValueField = "EventID";
-            EventDropdown.DataTextField = "EventName";
-            EventDropdown.DataBind ( );
-            EventDropdown.Items.Insert ( 0, new ListItem ( "เลือกกิจกรรม", "none" ) );
-        }
     }
 }

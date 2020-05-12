@@ -66,8 +66,8 @@
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
-    
         <section class="hero-section" style="margin-top:-200px;">
+        <%--กิจกรรมศาลาสาระ--%>
             <!-- question1 -->
             <div ID="question1" runat="server">
                 <div class="hero-item d-flex align-items-center justify-content-center text-center">
@@ -199,13 +199,14 @@
 			    </div>
             </div>
 
+        <%--กิจกรรม Wurth/sunday--%>
              <!-- SpecialQuestion1 -->
             <div ID="SpecialQuestion1" runat="server" visible=false>
                 <div class="hero-item d-flex align-items-center justify-content-center text-center">
 				    <div class="container">
                         <div class="bd-callout bd-callout-info col-md-10 offset-md-1" style="background-color:#ffffff;margin-top:250px;">
 					        <font style="color:#ff0000;font-size:36px;">#2</font>
-                            <asp:Label ID="SpecialQuestionText" runat="server" style="font-size:35px;color:#000000;">ลูกค้าสะดวกเข้ารับบริการวันไหน?</asp:Label>
+                            <asp:Label ID="SpecialQuestionText" runat="server" style="font-size:35px; color:#000000;">ลูกค้าสะดวกเข้ารับบริการวันไหน?</asp:Label>
                         </div>
                         <center>
                             <div class="col-md-10 offset-md-1">
@@ -220,8 +221,7 @@
                         </center>
                         <br />
 
-                        <asp:ImageButton ID="SPQ1BTN" ImageUrl="img/next.png" style="width:200px;" 
-                            runat="server" onclick="SPQ1BTN_Click" />
+                        <asp:ImageButton ID="SPQ1BTN" ImageUrl="img/next.png" style="width:200px;" runat="server" onclick="SPQ1BTN_Click" />
                         <br />
                         <br />
 				    </div>
@@ -290,7 +290,7 @@
 				    <div class="container">
                         <div class="bd-callout bd-callout-info col-md-10 offset-md-1" style="background-color:#ffffff;margin-top:250px;">
 					        <font style="color:#ff0000;font-size:36px;">#5</font>
-                            <asp:Label ID="SpecialQuestionText4" runat="server" style="font-size:35px;color:#000000;">ความพึงพอใจในการให้บริการ?</asp:Label>
+                            <asp:Label ID="SpecialQuestionText4" runat="server" style="font-size:35px; color:#000000;">ความพึงพอใจในการให้บริการ?</asp:Label>
                         </div>
                         <center>
                             <div class="col-md-10 offset-md-1">
@@ -305,8 +305,7 @@
                         </center>
                         <br />
 
-                        <asp:ImageButton ID="SPQ4BTN" ImageUrl="img/next.png" style="width:200px;" 
-                            runat="server" onclick="SPQ4BTN_Click" />
+                        <asp:ImageButton ID="SPQ4BTN" ImageUrl="img/next.png" style="width:200px;" runat="server" onclick="SPQ4BTN_Click" />
                         <br />
                         <br />
 				    </div>
@@ -319,7 +318,7 @@
 				    <div class="container">
                         <div class="bd-callout bd-callout-info col-md-10 offset-md-1" style="background-color:#ffffff;margin-top:250px;">
 					        <font style="color:#ff0000;font-size:36px;">#6</font>
-                            <asp:Label ID="SpecialQuestionText5" runat="server" style="font-size:35px;color:#000000;">ลูกค้าสนใจจะร่วมกิจกรรมในครั้งต่อไปหรือไม่?</asp:Label>
+                            <asp:Label ID="SpecialQuestionText5" runat="server" style="font-size:35px; color:#000000;">ลูกค้าสนใจจะร่วมกิจกรรมในครั้งต่อไปหรือไม่?</asp:Label>
                         </div>
                         <center>
                             <div class="col-md-10 offset-md-1">
@@ -371,17 +370,13 @@
                     </div>
                 </div>
             </div>
-	</section>
-
-
+	    </section>
     </ContentTemplate>
     </asp:UpdatePanel>
-    
-       
-    <script src="Scripts/jquery.slicknav.min.js"></script>
-	<script src="Scripts/owl.carousel.min.js"></script>
-	<script src="Scripts/jquery.sticky-sidebar.min.js"></script>
-	<script src="Scripts/jquery.magnific-popup.min.js"></script>
-	<script src="Scripts/main.js"></script>
+<script src="Scripts/jquery.slicknav.min.js"></script>
+<script src="Scripts/owl.carousel.min.js"></script>
+<script src="Scripts/jquery.sticky-sidebar.min.js"></script>
+<script src="Scripts/jquery.magnific-popup.min.js"></script>
+<script src="Scripts/main.js"></script>
 
 </asp:Content>

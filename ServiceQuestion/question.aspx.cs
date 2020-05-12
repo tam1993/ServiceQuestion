@@ -69,7 +69,7 @@ namespace ServiceQuestion {
             } else {
                 System.Threading.Thread.Sleep ( 800 );
                 question1.Visible = false;
-                /******** กิจกรรม Wurth *********/
+                /******** กิจกรรม Wurth/sunday *********/
                 if ( Session[ "EventID" ].ToString() == "3" ) {
                     SpecialQuestion1.Visible = true;
                 }/******** กิจกรรมศาลาสาระ *********/ 
