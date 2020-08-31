@@ -96,12 +96,17 @@
             <asp:TextBox ID="LicensePlate" CssClass="form-control form-control-lg" placeholder="กรอกทะเบียนรถ (กก1234 ชม)" AutoComplete="off" required runat="server" />
             <ajaxToolkit:AutoCompleteExtender MinimumPrefixLength="1" CompletionInterval="20" EnableCaching="false" ID="AutoCompleteExtender1" ServiceMethod="SearchLiecnsePlace" TargetControlID="LicensePlate" FirstRowSelected=false runat="server" />
         </div>
+        <%--<div class="form-group">
+            <label for="LicensePlate" style="font-size:30px;">ที่อยู่</label>
+            <asp:TextBox ID="TextBox1" CssClass="form-control form-control-lg" placeholder="กรอกที่อยู่" AutoComplete="off" required runat="server" />
+        </div>--%>
         <div class="form-group">
             <label for="Tel" style="font-size:30px;">เบอร์โทร</label>
             <asp:TextBox ID="Tel" class="form-control form-control-lg" placeholder="กรอกเบอร์โทร (0876543211)" maxlength="10" required AutoComplete="off" runat="server"></asp:TextBox>
             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" ControlToValidate="Tel" runat="server" ErrorMessage="<font color='red' size=16px>กรอกเฉพาะตัวเลข</font>" ValidationExpression="\d+" >
         </asp:RegularExpressionValidator>
         </div>
+
         
         <asp:Button ID="Button1" runat="server" style="font-size:50px;" CssClass="btn btn-danger btn-lg" 
             Text="   ยืนยัน    " onclick="Button1_Click" />

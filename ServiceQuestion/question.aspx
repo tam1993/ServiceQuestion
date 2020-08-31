@@ -370,6 +370,160 @@
                     </div>
                 </div>
             </div>
+
+        <%--กิจกรรมลูกค้านัดหมาย--%>
+            <!-- AssignQuestion1 -->
+            <div ID="AssignQuestion1" runat="server" visible=false>
+                <div class="hero-item d-flex align-items-center justify-content-center text-center">
+				    <div class="container">
+                        <div class="bd-callout bd-callout-info col-md-10 offset-md-1" style="background-color:#ffffff;margin-top:250px;">
+					        <font style="color:#ff0000;font-size:36px;">#2</font>
+                            <asp:Label ID="AssignQuestionText1" runat="server" style="font-size:35px; color:#000000;">การโทรแจ้งเตือนนำรถเข้าเช็กตามระยะ มีความเหมาะสมหรือไม่?</asp:Label>
+                        </div>
+                        <center>
+                            <div class="col-md-10 offset-md-1">
+                                <div class="funkyradio">
+                                    <asp:RadioButtonList ID="AssignAnswer1" runat="server" CssClass="funkyradio-success col-md-12" style="font-size:22px;">                                        
+                                        <asp:ListItem Value="โทรแจ้งเตือนก่อครบกำหนด" Text="โทรแจ้งเตือนก่อครบกำหนด" />
+                                        <asp:ListItem Value="โทรแจ้งเตือนตรงตามเวลา" Text="โทรแจ้งเตือนตรงตามเวลา" />
+                                        <asp:ListItem Value="โทรแจ้งเตือนล่าช้า" Text="โทรแจ้งเตือนล่าช้า" />
+                                    </asp:RadioButtonList>
+                                </div>
+                            </div>
+                        </center>
+                        <br />
+
+                        <asp:ImageButton ID="AssignQuestionBtn1" ImageUrl="img/next.png" style="width:200px;" runat="server" OnClick="AssignQuestionBtn1_Click" />
+                        <br />
+                        <br />
+				    </div>
+			    </div>
+            </div>
+
+            <!-- AssignQuestion2 -->
+            <div ID="AssignQuestion2" runat="server" visible=false>
+                <div class="hero-item d-flex align-items-center justify-content-center text-center">
+				    <div class="container">
+                        <div class="bd-callout bd-callout-info col-md-10 offset-md-1" style="background-color:#ffffff;margin-top:250px;">
+					        <font style="color:#ff0000;font-size:36px;">#3</font>
+                            <asp:Label ID="AssignQuestionText2" runat="server" style="font-size:35px; color:#000000;">รถเสร็จตรงตามเวลาที่เจ้าหน้าที่ทำการประเมินหรือไม่?</asp:Label>
+                        </div>
+                        <center>
+                            <div class="col-md-10 offset-md-1">
+                                <div class="funkyradio">
+                                    <asp:RadioButtonList ID="AssignAnswer2" runat="server" CssClass="funkyradio-success col-md-12" style="font-size:22px;">                                        
+                                        <asp:ListItem Value="รถเสร็จก่อนเวลาประเมิน" Text="รถเสร็จก่อนเวลาประเมิน" />
+                                        <asp:ListItem Value="รถเสร็จตรงเวลาประเมิน" Text="รถเสร็จตรงเวลาประเมิน" />
+                                        <asp:ListItem Value="รถเสร็จล่าช้ากว่าเวลาประเมิน" Text="รถเสร็จล่าช้ากว่าเวลาประเมิน" />
+                                    </asp:RadioButtonList>
+                                </div>
+                            </div>
+                        </center>
+                        <br />
+
+                        <asp:ImageButton ID="AssignQuestionBtn2" ImageUrl="img/next.png" style="width:200px;" runat="server" OnClick="AssignQuestionBtn2_Click" />
+                        <br />
+                        <br />
+				    </div>
+			    </div>
+            </div>
+
+            <!-- AssignQuestion3 -->
+            <div ID="AssignQuestion3" runat="server" visible=false>
+                <div class="hero-item d-flex align-items-center justify-content-center text-center">
+				    <div class="container">
+                        <div class="bd-callout bd-callout-info col-md-10 offset-md-1" style="background-color:#ffffff;margin-top:250px;">
+					        <font style="color:#ff0000;font-size:36px;">#4</font>
+                            <asp:Label ID="AssignQuestionText3" runat="server" style="font-size:35px; color:#000000;">ความพึงพอใจต่อการไห้บริการครั้งนี้</asp:Label>
+                        </div>
+                        <center>
+                            <div class="col-md-10 offset-md-1">
+                                <div class="funkyradio">
+                                    <asp:RadioButtonList ID="AssignAnswer3" runat="server" CssClass="funkyradio-success col-md-12" style="font-size:22px;">                                        
+                                        <asp:ListItem Value="มากที่สุด" Text="มากที่" />
+                                        <asp:ListItem Value="มาก" Text="มาก" />
+                                        <asp:ListItem Value="พอใช้" Text="พอใช้" />
+                                        <asp:ListItem Value="ควรปรับปรุง" Text="ควรปรับปรุง" />
+                                    </asp:RadioButtonList>
+                                </div>
+                            </div>
+                        </center>
+                        <br />
+
+                        <asp:ImageButton ID="AssignQuestionBtn3" ImageUrl="img/next.png" style="width:200px;" runat="server" OnClick="AssignQuestionBtn3_Click" />
+                        <br />
+                        <br />
+				    </div>
+			    </div>
+            </div>
+
+            <!-- AssignQuestion4 -->
+            <div ID="AssignQuestion4" runat="server" visible=false>
+                <div class="hero-item d-flex align-items-center justify-content-center text-center">
+				    <div class="container">
+                        <div class="bd-callout bd-callout-info col-md-10 offset-md-1" style="background-color:#ffffff;margin-top:250px;">
+					        <font style="color:#ff0000;font-size:36px;">#5</font>
+                            <asp:Label ID="AssignQuestionText4" runat="server" style="font-size:35px; color:#000000;">ท่านทำการนัดหมายอีกครั้งในรอบถัดไปหรือไม่?</asp:Label>
+                        </div>
+                        <center>
+                            <div class="col-md-10 offset-md-1">
+                                <div class="funkyradio">
+                                    <asp:RadioButtonList ID="AssignAnswer4" runat="server" CssClass="funkyradio-success col-md-12" style="font-size:22px;">                                        
+                                        <asp:ListItem Value="นัดหมายอีกครั้ง" Text="นัดหมายอีกครั้ง" />
+                                        <asp:ListItem Value="ไม่นัดหมาย" Text="ไม่นัดหมาย" />
+                                    </asp:RadioButtonList>
+                                </div>
+                            </div>
+                        </center>
+                        <br />
+
+                        <asp:ImageButton ID="AssignQuestionBtn4" ImageUrl="img/next.png" style="width:200px;" runat="server" OnClick="AssignQuestionBtn4_Click" />
+                        <br />
+                        <br />
+				    </div>
+			    </div>
+            </div>
+
+            <!-- AssignQuestion5 -->
+            <div ID="AssignQuestion5" runat="server" visible=false>
+                <div class="hero-item d-flex align-items-center justify-content-center text-center">
+				    <div class="container">
+                        <div class="bd-callout bd-callout-info col-md-10 offset-md-1" style="background-color:#ffffff;margin-top:250px;">
+					        <font style="color:#ff0000;font-size:36px;">#6</font>
+                            <asp:Label ID="AssignQuestionText5" runat="server" style="font-size:35px; color:#000000;">ส่วนงานใดที่ท่านอยากไห้ปรับปรุง/พัฒนามากขึ้น?</asp:Label>
+                        </div>
+                        <center>
+                            <div class="col-md-10 offset-md-1">
+                                <div class="funkyradio">
+                                    <asp:RadioButtonList ID="AssignAnswer5" runat="server" CssClass="funkyradio-success col-md-12" style="font-size:22px;">                                        
+                                        <asp:ListItem Value="ลูกค้าสัมพันธ์" Text="ลูกค้าสัมพันธ์" />
+                                        <asp:ListItem Value="ที่ปรึกษางานบริการ" Text="ที่ปรึกษางานบริการ" />
+                                        <asp:ListItem Value="ช่าง" Text="ช่าง" />
+                                        <asp:ListItem Value="เจ้าหน้าที่การเงิน" Text="เจ้าหน้าที่การเงิน" />
+                                        <asp:ListItem Value="ไม่มี" Text="ไม่มี" />
+                                    </asp:RadioButtonList>
+                                </div>
+                            </div>
+                        </center>
+                        <br />
+
+                        <asp:ImageButton ID="AssignQuestionBtn5" ImageUrl="img/next.png" style="width:200px;" runat="server" OnClick="AssignQuestionBtn5_Click" />
+                        <br />
+                        <br />
+				    </div>
+			    </div>
+            </div>
+
+            <!-- AssignRandomReward -->
+            <div id="AssignRandomReward" runat=server visible=false style="margin-top:80px;">
+                <div class="hero-item d-flex align-items-center justify-content-center text-center" >
+				    <div class="container">
+                        <img id="Img1" src="img/lion.png" runat=server />
+                        <br /><br /><br />
+                        <asp:Button ID="AssignRandomRewardBtn" runat="server" Text="         สุ่มของรางวัล         " Font-Size="30px" CssClass="btn btn-success" autopostback="true" OnClick="AssignRandomRewardBtn_Click" ></asp:Button>
+                    </div>
+                </div>
+            </div>
 	    </section>
     </ContentTemplate>
     </asp:UpdatePanel>

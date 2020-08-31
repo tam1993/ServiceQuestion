@@ -56,31 +56,44 @@ namespace ServiceQuestion {
 
         protected void Button1_Click(object sender, EventArgs e) {
             /******** กิจกรรม Wurth/sunday *********/
-            if ( Session[ "EventID" ].ToString ( ) == "3" ) {
-                if ( Tel.Text.Length < 10 ) {
+            if (Session["EventID"].ToString() == "3") {
+                if (Tel.Text.Length < 10) {
                     string Next5 = "Swal.fire({type: 'error',title: 'กรอกเบอร์โทรไม่ครบ'})";
-                    ScriptManager.RegisterStartupScript ( this, GetType ( ), "ServerControlScript", Next5, true );
-                } else { 
-                    Session[ "License" ] = LicensePlate.Text;
-                    Session[ "Tel" ] = Tel.Text;
-                    Session[ "UType" ] = type.SelectedValue;
-
-                    Response.Redirect ( @"~/question.aspx" );
-                }
-            }else {/******** กิจกรรมศาลาสาระ *********/
-                if ( type.SelectedValue == "" ) {
-                    string error = "alert('กรุณาเลือก กลุ่มลูกค้า')";
-                    ScriptManager.RegisterStartupScript ( this, GetType ( ), "ServerControlScript", error, true );
+                    ScriptManager.RegisterStartupScript(this, GetType(), "ServerControlScript", Next5, true);
                 } else {
-                    if ( Tel.Text.Length < 10 ) {
-                        string Next5 = "Swal.fire({type: 'error',title: 'กรอกเบอร์โทรไม่ครบ'})";
-                        ScriptManager.RegisterStartupScript ( this, GetType ( ), "ServerControlScript", Next5, true );
-                    } else { 
+                    Session["License"] = LicensePlate.Text;
+                    Session["Tel"] = Tel.Text;
+                    Session["UType"] = type.SelectedValue;
 
-                        Session[ "License" ] = LicensePlate.Text;
-                        Session[ "Tel" ] = Tel.Text;
-                        
-                        Response.Redirect ( @"~/question.aspx" );
+                    Response.Redirect(@"~/question.aspx");
+                }
+            /******** กิจกรรมลูกค้านัดหมาย *********/
+            } else if (Session["EventID"].ToString() == "5") {
+                if (Tel.Text.Length < 10) {
+                    string Next5 = "Swal.fire({type: 'error',title: 'กรอกเบอร์โทรไม่ครบ'})";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "ServerControlScript", Next5, true);
+                } else {
+                    Session["License"] = LicensePlate.Text;
+                    Session["Tel"] = Tel.Text;
+                    Session["UType"] = type.SelectedValue;
+
+                    Response.Redirect(@"~/question.aspx");
+                }
+                /******** กิจกรรมศาลาสาระ *********/
+            } else {
+                if (type.SelectedValue == "") {
+                    string error = "alert('กรุณาเลือก กลุ่มลูกค้า')";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "ServerControlScript", error, true);
+                } else {
+                    if (Tel.Text.Length < 10) {
+                        string Next5 = "Swal.fire({type: 'error',title: 'กรอกเบอร์โทรไม่ครบ'})";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "ServerControlScript", Next5, true);
+                    } else {
+
+                        Session["License"] = LicensePlate.Text;
+                        Session["Tel"] = Tel.Text;
+
+                        Response.Redirect(@"~/question.aspx");
                     }
                 }
             }

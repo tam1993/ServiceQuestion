@@ -65,11 +65,11 @@
               </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
-              <div class="tab-pane fade" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+              <div class="tab-pane" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                     <br />
                     <!-- Gridview -->
-                    <div id="Div1" style="overflow: scroll;overflow-y: auto;overflow-x: hidden;height: 500px;" runat=server>
-                    <asp:GridView ID="GridView1" CssClass="table table-dark" runat="server" AutoGenerateColumns=false>
+                    <div id="Div1" style="overflow: scroll;overflow-y: auto;overflow-x: hidden;height: 600px;" runat=server>
+                    <asp:GridView ID="GridView1" CssClass="table table-dark table-sm" runat="server" AutoGenerateColumns=false AllowPaging="True" PageSize="15" OnPageIndexChanging="GridView1_PageIndexChanging" >
                         <Columns>
                             <asp:TemplateField HeaderText = "ป้ายทะเบียน">
                                 <ItemTemplate>
@@ -120,7 +120,6 @@
                             <div class="card-body">
                             <h5 class="card-title">Graph</h5>
                             <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                            <%--<ajaxToolkit:PieChart ID="pieChart1" CssClass="font-xx" BorderWidth=0px runat="server" ChartHeight="300" ChartWidth="450" Visible=false/>--%>
                             <canvas id="myChart" ></canvas>
                             </div>
                         </div>
@@ -144,14 +143,8 @@
                         </div>
                     </div>
               </div>
-            </div>
-
-            
-
-            
+            </div>            
         </div>
-
-        
     </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

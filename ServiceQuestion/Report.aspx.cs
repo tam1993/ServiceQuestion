@@ -84,5 +84,27 @@ namespace ServiceQuestion {
             }
         }
 
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e) {
+            Reward rw = new Reward();
+            try {
+                rw.ServiceCode = ServiceCode.SelectedValue;
+                System.Globalization.CultureInfo _cultureEnInfo = new System.Globalization.CultureInfo("en-US");
+                DateTime date1 = Convert.ToDateTime(TextBox1.Text);
+                rw.DatestampStart = date1.ToString("yyyy-MM-dd");
+                DateTime date2 = Convert.ToDateTime(TextBox2.Text);
+                rw.DatestampEnd = date2.ToString("yyyy-MM-dd");
+                rw.EventID = int.Parse(EventDropdown.SelectedValue);
+                DataTable dt = new DataTable();
+                dt = rw.GetRewardHistory();
+                GridView1.DataSource = dt;
+                GridView1.PageIndex = e.NewPageIndex;
+                GridView1.DataBind();
+                string Script = "$('#nav-profile').removeClass('active');$('#nav-home').tab('show');$('#nav-profile-tab').removeClass('active');$('#nav-home-tab').addClass('active');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "ServerControlScript", Script, true);
+            } catch (Exception) { 
+                
+            }
+            
+        }
     }
 }

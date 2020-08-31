@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Data;
 
 namespace ServiceQuestion {
@@ -70,10 +67,13 @@ namespace ServiceQuestion {
                 System.Threading.Thread.Sleep ( 800 );
                 question1.Visible = false;
                 /******** กิจกรรม Wurth/sunday *********/
-                if ( Session[ "EventID" ].ToString() == "3" ) {
+                if (Session["EventID"].ToString() == "3") {
                     SpecialQuestion1.Visible = true;
-                }/******** กิจกรรมศาลาสาระ *********/ 
-                else if ( Session[ "EventID" ].ToString() == "4" ) {
+                /******** กิจกรรม ลูกค้านัดหมาย *********/
+                } else if (Session["EventID"].ToString() == "5") {
+                    AssignQuestion1.Visible = true;
+                /******** กิจกรรมศาลาสาระ *********/
+                } else if ( Session[ "EventID" ].ToString() == "4" ) {
                     question2.Visible = true;
 
                     //Query choice ข้อ2
@@ -316,30 +316,99 @@ namespace ServiceQuestion {
         }
 
         protected void SPQ4BT5_Click(object sender, ImageClickEventArgs e) {
+            
             Reward rw = new Reward ( );
             rw.UType = Session[ "UType" ].ToString ( );
             rw.ServiceCode = Session[ "ServiceCode" ].ToString ( );
             rw.EventID = int.Parse ( Session[ "EventID" ].ToString ( ) );
             rw.LicensePlate = Session[ "License" ].ToString ( );
             rw.Tel = Session[ "Tel" ].ToString ( );
+
+
+
             rw.Rname = "ไม่มีของรางวัล";
             rw.RID = "000000000";
-            rw.Savelog ( );
+            rw.Savelog();
             int CustomerID = rw.CustomerID;
+            List<Question> qlist = (List<Question>)Session["Answer"];
+            qlist.Add(new Question { QuestionText = SpecialQuestionText5.Text, AnswerText = SPQ5.SelectedItem.Text });
 
-            List<Question> qlist = (List<Question>) Session[ "Answer" ];
-            qlist.Add ( new Question { QuestionText = SpecialQuestionText5.Text, AnswerText = SPQ5.SelectedItem.Text } );
+            string script = "";
 
-            for ( int i = 0; i < qlist.Count; i++ ) {
-                user user = new user ( );
-                user.Question.QuestionText = qlist[ i ].QuestionText.ToString ( );
-                user.Question.AnswerText = qlist[ i ].AnswerText.ToString ( );
+            for (int i = 0; i < qlist.Count; i++) {
+                user user = new user();
+                user.Question.QuestionText = qlist[i].QuestionText.ToString();
+                user.Question.AnswerText = qlist[i].AnswerText.ToString();
                 user.CustomerID = CustomerID;
-                user.InsertAnswerHistory ( );
+                user.InsertAnswerHistory();
             }
-            
-            SpecialQuestion5.Visible = false;
-            string script = "Swal.fire({type: 'success',title: 'ขอบคุณที่ร่วมกิจกรรม',html:'<img src=\"img/sala.png\"></img>',allowOutsideClick: false,showConfirmButton: false})";
+            //ขอบคุน
+            script = "Swal.fire({type: 'success',title: 'ขอบคุณที่ร่วมกิจกรรม',html:'<img src=\"img/sala.png\"></img>',allowOutsideClick: false,showConfirmButton: false})";
+
+
+            /*
+            //สุ่มรางวัล
+            DataTable rdt = new DataTable();
+            //สุ่มของรางวัลตามกลุ่มลูกค้า
+            rdt = ((DataTable)rw.GetReward());
+            //แสดงรางวัล
+            int CustomerID=0;
+            if (!string.IsNullOrEmpty(rdt.Rows[0]["RName"].ToString()) && (rdt.Rows[0]["RName"].ToString()) != "duplicate") {
+                script = "Swal.fire({type: 'success',title: 'ขอบคุณที่ร่วมกิจกรรม',html:'<img src=\"img/" + rdt.Rows[0]["img"].ToString() + "\"></img><br /><font style=\"font-size:34px;\">ยินดีด้วย</font>',allowOutsideClick: false,showConfirmButton: false})";
+
+                rw.Rname = rdt.Rows[0]["RName"].ToString();
+                rw.RID = rdt.Rows[0]["RID"].ToString();
+                rw.Savelog();
+                CustomerID = rw.CustomerID;
+
+                List<Question> qlist = (List<Question>)Session["Answer"];
+                qlist.Add(new Question { QuestionText = SpecialQuestionText5.Text, AnswerText = SPQ5.SelectedItem.Text });
+
+                for (int i = 0; i < qlist.Count; i++) {
+                    user user = new user();
+                    user.Question.QuestionText = qlist[i].QuestionText.ToString();
+                    user.Question.AnswerText = qlist[i].AnswerText.ToString();
+                    user.CustomerID = CustomerID;
+                    user.InsertAnswerHistory();
+                }
+
+
+                SpecialQuestion5.Visible = false;
+            } else if ((rdt.Rows[0]["RName"].ToString()) == "duplicate") {
+                script = "Swal.fire({type: 'error',title: 'ผิดพลาด...',html:'<font size=\"4px\">เลขทะเบียนรถใช้งานไปแล้ว</font>',allowOutsideClick: false,showConfirmButton: false})";
+            } else {
+                script = "Swal.fire({type: 'success',title: 'ขอบคุณที่ร่วมกิจกรรม',html:'<img src=\"img/sala.png\"></img><br /><font style=\"font-size:34px;\">ของรางวัลพิเศษ</font>',allowOutsideClick: false,showConfirmButton: false})";
+                rw.Rname = "ไม่มีของรางวัล";
+                rw.RID = "000000000";
+                rw.Savelog();
+                CustomerID = rw.CustomerID;
+
+
+                List<Question> qlist = (List<Question>)Session["Answer"];
+                qlist.Add(new Question { QuestionText = SpecialQuestionText5.Text, AnswerText = SPQ5.SelectedItem.Text });
+
+                for (int i = 0; i < qlist.Count; i++) {
+                    user user = new user();
+                    user.Question.QuestionText = qlist[i].QuestionText.ToString();
+                    user.Question.AnswerText = qlist[i].AnswerText.ToString();
+                    user.CustomerID = CustomerID;
+                    user.InsertAnswerHistory();
+                }
+
+                SpecialQuestion5.Visible = false;
+            }
+            */
+
+
+
+
+
+
+
+
+
+
+
             ScriptManager.RegisterStartupScript ( this, GetType ( ), "ServerControlScript", script, true );
 
             string tmpServicecode = Session[ "ServiceCode" ].ToString ( );
@@ -347,6 +416,107 @@ namespace ServiceQuestion {
             Session.Clear ( );
             Session[ "ServiceCode" ] = tmpServicecode;
             Session[ "EventID" ] = tmpEventID;
+        }
+
+        protected void AssignQuestionBtn1_Click(object sender, ImageClickEventArgs e) {
+            List<Question> qlist = new List<Question>();
+            qlist.Add(new Question { QuestionText = AssignQuestionText1.Text, AnswerText = AssignAnswer1.SelectedItem.Text });
+            Session["Answer"] = qlist;
+            AssignQuestion1.Visible = false;
+            AssignQuestion2.Visible = true;
+        }
+
+        protected void AssignQuestionBtn2_Click(object sender, ImageClickEventArgs e) {
+            List<Question> qlist = (List<Question>)Session["Answer"];
+            qlist.Add(new Question { QuestionText = AssignQuestionText2.Text, AnswerText = AssignAnswer2.SelectedItem.Text });
+            Session["Answer"] = qlist;
+            AssignQuestion2.Visible = false;
+            AssignQuestion3.Visible = true;
+        }
+
+        protected void AssignQuestionBtn3_Click(object sender, ImageClickEventArgs e) {
+            List<Question> qlist = (List<Question>)Session["Answer"];
+            qlist.Add(new Question { QuestionText = AssignQuestionText3.Text, AnswerText = AssignAnswer3.SelectedItem.Text });
+            Session["Answer"] = qlist;
+            AssignQuestion3.Visible = false;
+            AssignQuestion4.Visible = true;
+        }
+
+        protected void AssignQuestionBtn4_Click(object sender, ImageClickEventArgs e) {
+            List<Question> qlist = (List<Question>)Session["Answer"];
+            qlist.Add(new Question { QuestionText = AssignQuestionText4.Text, AnswerText = AssignAnswer4.SelectedItem.Text });
+            Session["Answer"] = qlist;
+            AssignQuestion4.Visible = false;
+            AssignQuestion5.Visible = true;
+        }
+
+        protected void AssignQuestionBtn5_Click(object sender, ImageClickEventArgs e) {
+            List<Question> qlist = (List<Question>)Session["Answer"];
+            qlist.Add(new Question { QuestionText = AssignQuestionText5.Text, AnswerText = AssignAnswer5.SelectedItem.Text });
+            Session["Answer"] = qlist;
+            AssignQuestion5.Visible = false;
+            AssignRandomReward.Visible = true;
+        }
+
+        protected void AssignRandomRewardBtn_Click(object sender, EventArgs e) {
+            string script = "";
+
+            Reward rw = new Reward();
+            rw.UType = Session["UType"].ToString();
+            rw.ServiceCode = Session["ServiceCode"].ToString();
+            rw.EventID = int.Parse(Session["EventID"].ToString());
+            rw.LicensePlate = Session["License"].ToString();
+            rw.Tel = Session["Tel"].ToString();
+
+
+            DataTable rdt = ((DataTable)rw.GetReward());
+
+            if (!string.IsNullOrEmpty(rdt.Rows[0]["RName"].ToString()) && (rdt.Rows[0]["RName"].ToString()) != "duplicate") {
+                rw.Rname = rdt.Rows[0]["RName"].ToString();
+                rw.RID = rdt.Rows[0]["RID"].ToString();
+                rw.Savelog();
+                int CustomerID = rw.CustomerID;
+
+                List<Question> qlist = (List<Question>)Session["Answer"];
+
+                for (int i = 0; i < qlist.Count; i++) {
+                    user user = new user();
+                    user.Question.QuestionText = qlist[i].QuestionText.ToString();
+                    user.Question.AnswerText = qlist[i].AnswerText.ToString();
+                    user.CustomerID = CustomerID;
+                    user.InsertAnswerHistory();
+                }
+
+                script = "Swal.fire({type: 'success',title: 'ขอบคุณที่ร่วมกิจกรรม',html:'<font style=\"font-size:38px;\">ได้รับ : " + rdt.Rows[0]["RName"].ToString() + "</font>',allowOutsideClick: false,showConfirmButton: false})";
+            } else if ((rdt.Rows[0]["RName"].ToString()) == "duplicate") {
+                script = "Swal.fire({type: 'error',title: 'ผิดพลาด...',html:'<font size=\"4px\">เลขทะเบียนรถใช้งานไปแล้ว</font>',allowOutsideClick: false,showConfirmButton: false})";
+            } else {
+                rw.Rname = "ของรางวัลพิเศษ";
+                rw.RID = "9999";
+                rw.Savelog();
+                int CustomerID = rw.CustomerID;
+
+                List<Question> qlist = (List<Question>)Session["Answer"];
+
+                for (int i = 0; i < qlist.Count; i++) {
+                    user user = new user();
+                    user.Question.QuestionText = qlist[i].QuestionText.ToString();
+                    user.Question.AnswerText = qlist[i].AnswerText.ToString();
+                    user.CustomerID = CustomerID;
+                    user.InsertAnswerHistory();
+                }
+
+                script = "Swal.fire({type: 'success',title: 'ขอบคุณที่ร่วมกิจกรรม',html:'<img src=\"img/sala.png\"></img><br /><font style=\"font-size:34px;\">ของรางวัลพิเศษ</font>',allowOutsideClick: false,showConfirmButton: false})";
+            }
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "ServerControlScript", script, true);
+
+            string tmpServicecode = Session["ServiceCode"].ToString();
+            string tmpEventID = Session["EventID"].ToString();
+            Session.Clear();
+            Session["ServiceCode"] = tmpServicecode;
+            Session["EventID"] = tmpEventID;
+
         }
     }
 }
